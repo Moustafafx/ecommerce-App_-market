@@ -1,7 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter_application_1/core/cache/shared_preferences_cache.dart';
-import 'package:flutter_application_1/core/constants/api_endpoints.dart';
+import 'package:flutter_application_1/core/network/api_endpoints.dart';
 import 'package:flutter_application_1/core/network/api_consumer.dart';
 import 'package:flutter_application_1/core/network/api_exceptions.dart';
 import 'package:flutter_application_1/features/auth/data/signin_model.dart';

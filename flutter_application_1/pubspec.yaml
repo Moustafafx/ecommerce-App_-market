@@ -32,13 +32,20 @@ dependencies:
   dio: ^5.9.2
   flutter:
     sdk: flutter
+  curved_navigation_bar: ^1.0.6
+  animations: ^2.1.2
+  carousel_slider: ^5.0.0  
   flutter_bloc: ^9.1.1
-  shared_preferences: ^2.5.5
   flutter_svg: ^2.2.4
+  image_picker: ^1.2.1
   intl_phone_field: ^3.2.0
-  smooth_page_indicator: ^2.0.1
   jwt_decoder: ^2.0.1
   pinput: ^6.0.2
+  shimmer: ^3.0.0
+  readmore: ^3.0.0
+  flutter_rating_bar: ^4.0.1
+  shared_preferences: ^2.5.5
+  smooth_page_indicator: ^2.0.1
 dev_dependencies:
   flutter_lints: ^6.0.0
   flutter_test:
@@ -58,6 +65,7 @@ flutter:
     - assets/images/auth_with/
     - assets/images/Onboarding_Screens/
     - assets/images/ForgotPassword_verification/
+    - assets/images/Category/
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/to/resolution-aware-images
   # For details regarding adding assets from package dependencies, see

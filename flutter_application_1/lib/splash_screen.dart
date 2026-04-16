@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/core/cache/shared_preferences_cache.dart';
 import 'package:flutter_application_1/core/constants/app_colors.dart';
+import 'package:flutter_application_1/core/network/api_endpoints.dart';
 import 'package:flutter_application_1/features/auth/view/signup_view.dart';
 import 'package:flutter_application_1/onbording_screens/onbording_root_screens.dart';
 import 'package:flutter_svg/svg.dart';
@@ -32,11 +34,9 @@ class _SplashScreenState extends State<SplashScreen> with TickerProviderStateMix
     )..forward();
 
     // Navigate after delay
-    Future.delayed(Duration(seconds: 3), () {
-      Navigator.of(context).pushReplacement(
-        MaterialPageRoute(builder: (context) => OnbordingRootScreens()),
-      );
-    });
+   Future.delayed(Duration(seconds: 3), () {
+  checkUser();
+});
   }
 
   @override
@@ -70,4 +70,33 @@ class _SplashScreenState extends State<SplashScreen> with TickerProviderStateMix
       ),
     );
   }
+
+
+void checkUser() {
+  final token = SharedPreferencesCache.getdata(key: Apikey.token);
+  final seenOnboarding = SharedPreferencesCache.getdata(key: "seenOnboarding");
+
+  if (token != null) {
+    // 👈 المستخدم عامل Login
+    Navigator.pushReplacementNamed(context, "root");
+  } 
+  else if (seenOnboarding == true) {
+    // 👈 شاف onboarding قبل كدا
+    Navigator.pushReplacementNamed(context, "login");
+  } 
+  else {
+    // 👈 أول مرة يفتح التطبيق
+    Navigator.pushReplacement(
+      context,
+      MaterialPageRoute(builder: (context) => OnbordingRootScreens()),
+    );
+  }
 }
+
+
+}
+
+
+
+
+

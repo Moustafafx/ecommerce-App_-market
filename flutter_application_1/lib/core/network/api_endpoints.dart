@@ -3,6 +3,8 @@ class ApiEndpoints {
 static String baseUrl="https://supermarket-dan1.onrender.com/api/v1";
 static String signin="/auth/signIn";
 static String signUp="/auth/signUp";
+static String categoriesall="/home/categories";
+
 }
 
 

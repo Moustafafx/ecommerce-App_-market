@@ -1,5 +1,5 @@
 import 'package:flutter/foundation.dart';
-import 'package:flutter_application_1/core/constants/api_endpoints.dart';
+import 'package:flutter_application_1/core/network/api_endpoints.dart';
 
 class ApiErrorModel {
 

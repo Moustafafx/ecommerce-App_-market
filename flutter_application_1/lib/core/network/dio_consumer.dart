@@ -1,5 +1,5 @@
 import 'package:dio/dio.dart';
-import 'package:flutter_application_1/core/constants/api_endpoints.dart';
+import 'package:flutter_application_1/core/network/api_endpoints.dart';
 import 'package:flutter_application_1/core/network/api_consumer.dart';
 import 'package:flutter_application_1/core/network/api_exceptions.dart';
 import 'package:flutter_application_1/core/network/api_interceptors.dart';
@@ -7,7 +7,7 @@ import 'package:flutter_application_1/core/network/api_interceptors.dart';
 class DioConsumer extends ApiConsumer{
  final Dio dio;
 
-  DioConsumer(this.dio){
+  DioConsumer(this.dio, ){
     dio.options.baseUrl=ApiEndpoints.baseUrl;
   dio.interceptors.add(ApiInterceptors());
    dio.interceptors.add(LogInterceptor(

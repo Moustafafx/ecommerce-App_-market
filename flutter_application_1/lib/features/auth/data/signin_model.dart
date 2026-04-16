@@ -1,4 +1,4 @@
-import 'package:flutter_application_1/core/constants/api_endpoints.dart';
+import 'package:flutter_application_1/core/network/api_endpoints.dart';
 import 'package:flutter_application_1/features/auth/data/user_model.dart';
 
 class SigninModel {

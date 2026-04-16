@@ -1,10 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/core/constants/app_colors.dart';
-import 'package:flutter_application_1/core/cubit/user_cubit_cubit.dart';
+import 'package:flutter_application_1/cubits/cubit_user/user_cubit_cubit.dart';
 import 'package:flutter_application_1/features/auth/widgets/coustom_buttom.dart';
 import 'package:flutter_application_1/features/shared/coustomtext.dart';
 import 'package:flutter_application_1/features/shared/coustomtextformfield.dart';
+import 'package:flutter_application_1/root_navigator.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class LoginView extends StatefulWidget {
@@ -34,6 +35,7 @@ class _LoginViewState extends State<LoginView> {
       listener: (context, state) {
      if(state is usersuccesssignin){
         ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("success")));
+        Navigator.of(context).push(MaterialPageRoute(builder: (context) => Root()));
      }else if(state is userfailersignin ){
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(state.errormessage)));
 
@@ -135,6 +137,7 @@ class _LoginViewState extends State<LoginView> {
                         _textEditingControllerpassword.text,
                         
                       );
+
                     },
                   ),
                 ),

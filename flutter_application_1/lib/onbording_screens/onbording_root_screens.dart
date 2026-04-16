@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/core/cache/shared_preferences_cache.dart';
 import 'package:flutter_application_1/features/auth/widgets/coustom_buttom.dart';
 import 'package:flutter_application_1/features/home/view/home_view.dart';
 import 'package:flutter_application_1/features/shared/coustomtext.dart';
@@ -107,13 +108,21 @@ class _OnBoardingState extends State<OnbordingRootScreens> {
                 ),
                 onPressed: () {
                   if (isLastPage) {
-                    Navigator.pushNamed(context, "login");
-                  } else {
-                    controller.nextPage(
-                      duration: Duration(milliseconds: 500),
-                      curve: Curves.easeInOut,
-                    );
-                  }
+
+    // 👇 احفظ إنه شاف الـ onboarding
+    SharedPreferencesCache.setdata(
+      key: "seenOnboarding",
+      value: true,
+    );
+
+    Navigator.pushReplacementNamed(context, "login");
+
+  } else {
+    controller.nextPage(
+      duration: Duration(milliseconds: 500),
+      curve: Curves.easeInOut,
+    );
+  }
                 },
                 child: Text(
                   isLastPage ? "Get Started" : "Next",

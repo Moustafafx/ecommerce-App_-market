@@ -51,12 +51,17 @@ class CategoryWidget extends StatelessWidget {
               return Column(
                 children: [
                   Expanded(
-                    child: Container(
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(15),
-                        image: DecorationImage(
-                          image: NetworkImage(category.image ?? ""),
-                          fit: BoxFit.cover,
+                    child: InkWell(
+                      onTap: () {
+                        
+                      },
+                      child: Container(
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(15),
+                          image: DecorationImage(
+                            image: NetworkImage(category.image ?? ""),
+                            fit: BoxFit.cover,
+                          ),
                         ),
                       ),
                     ),

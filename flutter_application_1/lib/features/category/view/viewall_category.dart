@@ -20,7 +20,7 @@ class ViewallCategory extends StatelessWidget {
       body: BlocBuilder<CubitCategoryCubit, CubitCategoryState>(
         builder: (context, state) {
           if (state is categoryLoading) {
-            return const Center(child: CategoryShimmer());
+            return CategoryShimmer();
           }
 
           if (state is categoryError) {

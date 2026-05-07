@@ -31,15 +31,20 @@ class _LoginViewState extends State<LoginView> {
   ];
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<UserCubitCubit,UserCubitState>(
+    return BlocConsumer<UserCubitCubit, UserCubitState>(
       listener: (context, state) {
-     if(state is usersuccesssignin){
-        ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("success")));
-        Navigator.of(context).push(MaterialPageRoute(builder: (context) => Root()));
-     }else if(state is userfailersignin ){
-      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(state.errormessage)));
-
-     }
+        if (state is usersuccesssignin) {
+          ScaffoldMessenger.of(
+            context,
+          ).showSnackBar(SnackBar(content: Text("success")));
+          Navigator.of(
+            context,
+          ).push(MaterialPageRoute(builder: (context) => Root()));
+        } else if (state is userfailersignin) {
+          ScaffoldMessenger.of(
+            context,
+          ).showSnackBar(SnackBar(content: Text(state.errormessage)));
+        }
       },
       builder: (context, state) {
         return Scaffold(
@@ -127,19 +132,19 @@ class _LoginViewState extends State<LoginView> {
 
                 Padding(
                   padding: const EdgeInsets.all(8.0),
-                  child:state is userloadingdata? CupertinoActivityIndicator(): coustombuttom(
-                    form: formkey,
-                    text: "Log In",
-                    onTap: () {
-                      formkey.currentState!.validate();
-                      BlocProvider.of<UserCubitCubit>(context).signin(
-                        _textEditingControlleremail.text,
-                        _textEditingControllerpassword.text,
-                        
-                      );
-
-                    },
-                  ),
+                  child: state is userloadingdata
+                      ? CupertinoActivityIndicator()
+                      : coustombuttom(
+                          form: formkey,
+                          text: "Log In",
+                          onTap: () {
+                            formkey.currentState!.validate();
+                            BlocProvider.of<UserCubitCubit>(context).signin(
+                              _textEditingControlleremail.text,
+                              _textEditingControllerpassword.text,
+                            );
+                          },
+                        ),
                 ),
                 SizedBox(height: 6),
                 Center(
@@ -188,7 +193,9 @@ class _LoginViewState extends State<LoginView> {
                       fontWeight: FontWeight.w500,
                     ),
                     TextButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.of(context).pushNamed("signup");
+                      },
                       child: coustomtext(
                         text: "register?",
                         fontSize: 16,

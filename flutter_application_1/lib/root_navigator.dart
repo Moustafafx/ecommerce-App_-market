@@ -3,7 +3,7 @@ import 'package:flutter_application_1/core/constants/app_colors.dart';
 import 'package:flutter_application_1/features/auth/view/profile_view.dart';
 import 'package:flutter_application_1/features/cart/view/cart_view.dart';
 import 'package:flutter_application_1/features/home/view/home_view.dart';
-import 'package:flutter_application_1/features/orderhistory/view/historyorder.dart';
+import 'package:flutter_application_1/features/orderhistory/view/favourite.dart';
 
 class Root extends StatefulWidget {
   @override
@@ -17,7 +17,7 @@ class _RootState extends State<Root> {
   List<Widget> screens = [
     HomeView(),
     CartView(),
-    Historyorder(),
+    Favourite(),
 
     ProfileView(),
   ];
@@ -25,7 +25,6 @@ class _RootState extends State<Root> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.colorsinapp,
       body: PageView(
         physics: NeverScrollableScrollPhysics(),
         controller: _pageController,
@@ -62,7 +61,7 @@ class _RootState extends State<Root> {
               ),
               selectedItemColor: AppColors.colorbluebutton,
               type: BottomNavigationBarType.fixed,
-              backgroundColor: AppColors.colorsinapp,
+
               currentIndex: currentState,
               onTap: (index) {
                 setState(() {

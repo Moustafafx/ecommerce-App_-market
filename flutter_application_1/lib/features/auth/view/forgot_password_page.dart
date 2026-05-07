@@ -50,7 +50,7 @@ class ForgotPasswordPage extends StatelessWidget {
         scrolledUnderElevation: 0,
       ),
       body: Form(
-        key:  formkey_ForgotPassword_With_Email,
+        key: formkey_ForgotPassword_With_Email,
         child: ListView(
           children: [
             SizedBox(height: 50),
@@ -87,7 +87,9 @@ class ForgotPasswordPage extends StatelessWidget {
                 coustombuttom(
                   onTap: () {
                     formkey_ForgotPassword_With_Email.currentState!.validate();
-                    Navigator.of(context).pushNamed("Verification_Code_with_email");
+                    Navigator.of(
+                      context,
+                    ).pushNamed("Verification_Code_with_email");
                   },
                   form: formkey_ForgotPassword_With_Email,
                   text: "Send Code",

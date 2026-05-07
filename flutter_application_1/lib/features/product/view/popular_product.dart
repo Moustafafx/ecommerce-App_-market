@@ -1,22 +1,15 @@
-import 'dart:math';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/core/constants/app_colors.dart';
 import 'package:flutter_application_1/cubits/favourite/favourite_cubit.dart';
 import 'package:flutter_application_1/cubits/favourite/favourite_states.dart';
-import 'package:flutter_application_1/cubits/product_cubit/popular_product_cubit.dart'
-    show
-        PopularProductCubit,
-        PopularProductState,
-        PopularProductloading,
-        PopularProductfailer,
-        PopularProductsuccess;
+import 'package:flutter_application_1/cubits/product_cubit/popular_product_cubit.dart';
 import 'package:flutter_application_1/features/product/widget/shemmer/product_shemmer.dart';
 import 'package:flutter_application_1/features/shared/coustomtext.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class ProductView extends StatelessWidget {
-  late List<int> favoriteIds;
+class popular_product extends StatelessWidget {
+
+late List<int> favoriteIds;
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<PopularProductCubit, PopularProductState>(
@@ -30,21 +23,18 @@ class ProductView extends StatelessWidget {
         }
         if (state is PopularProductsuccess) {
           final products = state.products;
-          return Scaffold(
-            appBar: AppBar(),
-            body: GridView.builder(
-              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                mainAxisSpacing: 6,
-                crossAxisSpacing: 1,
-                crossAxisCount: 2,
-              ),
+
+          return SizedBox(
+            height: 213, // ضروري تحدد ارتفاع هنا
+            child: ListView.builder(
+              scrollDirection: Axis.horizontal, // السكرول الأفقي
               itemCount: products.length,
               itemBuilder: (context, index) {
                 final product = products[index];
                 return Padding(
-                  padding: const EdgeInsets.all(2.0),
+                  padding: const EdgeInsets.all(7.0),
                   child: Container(
-                    width: 200, // يمكنك التحكم في العرض حسب احتياجك
+                    width: 205, // يمكنك التحكم في العرض حسب احتياجك
                     padding: const EdgeInsets.all(6),
                     decoration: BoxDecoration(
                       color: Colors.white,
@@ -76,7 +66,7 @@ class ProductView extends StatelessWidget {
                               ),
                               child: Center(
                                 child: Image.network(
-                                  product.imageproduct,
+                                  product.imageproduct, // رابط صورة الموبايل
                                   height: 140,
                                   fit: BoxFit.contain,
                                 ),
@@ -91,17 +81,13 @@ class ProductView extends StatelessWidget {
                                   color: Colors.white,
                                   shape: BoxShape.circle,
                                 ),
-                                child:
-                                    BlocBuilder<FavoriteCubit, FavoriteState>(
-                                      builder: (context, state) {
-                                        // ✅ استخدم state مش context.read
-                                        final isFav = context
-                                            .read<FavoriteCubit>()
-                                            .favoriteIds
-                                            .contains(product.id);
-
-                                        return GestureDetector(
-                                  onTap: () {
+                                child:BlocBuilder<FavoriteCubit, FavoriteState>(
+  builder: (context, state) {
+    // ✅ استخدم state مش context.read
+    final isFav = context.read<FavoriteCubit>().favoriteIds.contains(product.id);
+    
+    return GestureDetector(
+ onTap: () {
  context.read<FavoriteCubit>().toggleFavorite(
    product.id!,
    productData: {
@@ -113,23 +99,19 @@ class ProductView extends StatelessWidget {
    },
  );
 },
-                                          child: Icon(
-                                            isFav
-                                                ? Icons.favorite
-                                                : Icons.favorite_border,
-                                            color: isFav
-                                                ? Colors.red
-                                                : Colors.grey, // ✅ بيتغير
-                                            size: 20,
-                                          ),
-                                        );
-                                      },
-                                    ),
+      child: Icon(
+        isFav ? Icons.favorite : Icons.favorite_border,
+        color: isFav ? Colors.red : Colors.grey, // ✅ بيتغير
+        size: 20,
+      ),
+    );
+  },
+)
                               ),
                             ),
                           ],
                         ),
-                        const SizedBox(height: 2),
+                        const SizedBox(height: 6),
                         // السعر والتقييم
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -146,13 +128,14 @@ class ProductView extends StatelessWidget {
                                 Icon(
                                   Icons.star_border,
                                   color: Color(0xFF0D1B3E),
-                                  size: 20,
+                                  size: 27,
                                 ),
+                                SizedBox(width: 4),
 
                                 coustomtext(
                                   text: product.rating.toString(),
                                   color: Colors.black,
-                                  fontSize: 16,
+                                  fontSize: 17,
                                   fontWeight: FontWeight.w500,
                                 ),
                               ],
@@ -162,33 +145,10 @@ class ProductView extends StatelessWidget {
 
                         // اسم المنتج
                         coustomtext(
-                          text: "product.nameproduct",
+                          text: product.nameproduct,
                           color: Colors.black,
                           fontSize: 13,
                           fontWeight: FontWeight.w800,
-                        ),
-
-                        Center(
-                          child: GestureDetector(
-                            onTap: () {},
-                            child: Container(
-                              alignment: Alignment.center,
-                              height: 30,
-                              width: 130,
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(16),
-                                border: Border.all(
-                                  color: AppColors.colorbluebutton,
-                                ),
-                              ),
-                              child: coustomtext(
-                                text: "Add",
-                                fontSize: 20,
-                                color: AppColors.colorbluebutton,
-                                fontWeight: FontWeight.w500,
-                              ),
-                            ),
-                          ),
                         ),
                       ],
                     ),
@@ -203,5 +163,3 @@ class ProductView extends StatelessWidget {
     );
   }
 }
-
-//${product.price.toString()}

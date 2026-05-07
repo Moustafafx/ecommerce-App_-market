@@ -30,7 +30,14 @@ class DetailsViewCategory extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text(title)),
+      appBar: AppBar(
+        centerTitle: true,
+        title: coustomtext(
+          text: title,
+          fontWeight: FontWeight.bold,
+          fontSize: 20,
+        ),
+      ),
       body: ListView(
         children: [
           SizedBox(
@@ -151,7 +158,7 @@ class DetailsViewCategory extends StatelessWidget {
                   trimMode: TrimMode.Line,
                   trimCollapsedText: 'Show more',
                   trimExpandedText: ' Show less',
-                  style: TextStyle(fontSize: 14, color: Colors.black),
+                  style: TextStyle(fontSize: 14),
                   moreStyle: TextStyle(
                     fontSize: 14,
                     fontWeight: FontWeight.bold,
@@ -192,7 +199,7 @@ class DetailsViewCategory extends StatelessWidget {
                   child: Container(
                     padding: EdgeInsets.all(6),
                     height: 55,
-                    width: 210,
+                    width: 190,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(14),
                       border: Border.all(color: AppColors.colorbluebutton),
@@ -206,7 +213,7 @@ class DetailsViewCategory extends StatelessWidget {
                           ),
                           SizedBox(width: 6),
                           coustomtext(
-                            text: "Free Shipping",
+                            text: "Add to Cart",
                             fontSize: 20,
                             fontWeight: FontWeight.w500,
                             color: AppColors.colorbluebutton,

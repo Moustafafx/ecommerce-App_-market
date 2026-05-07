@@ -1,7 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:flutter_application_1/core/network/api_consumer.dart';
-import 'package:flutter_application_1/features/category/data/Category_model.dart';
-import 'package:flutter_application_1/features/category/data/product_model.dart';
+import 'package:flutter_application_1/features/category/data/categorydetails_model.dart';
 import 'package:meta/meta.dart';
 
 part 'related_Category_cubit_state.dart';

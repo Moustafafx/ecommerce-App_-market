@@ -2,6 +2,8 @@ import 'package:animations/animations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/core/constants/app_colors.dart';
 import 'package:flutter_application_1/cubits/RelatedcategoryCubit/cubit/related_category_cubit_cubit.dart';
+import 'package:flutter_application_1/cubits/favourite/favourite_cubit.dart';
+import 'package:flutter_application_1/cubits/favourite/favourite_states.dart';
 import 'package:flutter_application_1/features/category/view/details_view_category.dart';
 import 'package:flutter_application_1/features/category/widgets/shimmer/shimmer_RelatedCategoryScreen.dart';
 import 'package:flutter_application_1/features/shared/coustomtext.dart';
@@ -79,7 +81,7 @@ class _RelatedcategoryscreenState extends State<Relatedcategoryscreen> {
       body: BlocBuilder<RelatedCategoryCubitCubit, RelatedProductsCubitState>(
         builder: (context, state) {
           if (state is RelatedCategoryCubitLoading) {
-            return Center(child: ShimmerRelatedcategoryscreen());
+            return ShimmerRelatedcategoryscreen();
           }
 
           if (state is RelatedCategoryCubitErrorl) {
@@ -97,7 +99,6 @@ class _RelatedcategoryscreenState extends State<Relatedcategoryscreen> {
                   final product = products[index];
 
                   return OpenContainer(
-                    
                     transitionDuration: Duration(milliseconds: 500),
                     closedElevation: 0,
                     openElevation: 0,
@@ -108,6 +109,7 @@ class _RelatedcategoryscreenState extends State<Relatedcategoryscreen> {
                     // الشكل قبل الضغط (نفس تصميمك)
                     closedBuilder: (context, action) {
                       return Container(
+                        color: Theme.of(context).cardColor,
                         child: Row(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
@@ -137,9 +139,43 @@ class _RelatedcategoryscreenState extends State<Relatedcategoryscreen> {
                                           color: Color(0xFF0D214F),
                                         ),
                                       ),
-                                      const Icon(
-                                        Icons.favorite_border,
-                                        color: Color(0xFF0D214F),
+                                      BlocBuilder<FavoriteCubit, FavoriteState>(
+                                        builder: (context, state) {
+                                          final isFav = context
+                                              .read<FavoriteCubit>()
+                                              .favoriteIds
+                                              .contains(product.id);
+                                          return GestureDetector(
+                                            onTap: () {
+                                              if (product.id != null) {
+                                                context
+                                                    .read<FavoriteCubit>()
+                                                    .toggleFavorite(
+                                                      product.id!,
+                                                      // ✅ ابعت بيانات المنتج عشان يتحفظ محلياً
+                                                      productData: {
+                                                        'id': product.id,
+                                                        'title': product.title,
+                                                        'price': product.price,
+                                                        'thumbnail':
+                                                            product.thumbnail,
+                                                        'rating':
+                                                            product.rating,
+                                                      },
+                                                    );
+                                              }
+                                            },
+                                            child: Icon(
+                                              isFav
+                                                  ? Icons.favorite
+                                                  : Icons.favorite_border,
+                                              color: isFav
+                                                  ? Colors.red
+                                                  : Colors.grey,
+                                              size: 20,
+                                            ),
+                                          );
+                                        },
                                       ),
                                     ],
                                   ),

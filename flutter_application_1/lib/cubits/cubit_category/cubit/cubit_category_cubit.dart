@@ -22,6 +22,7 @@ class CubitCategoryCubit extends Cubit<CubitCategoryState> {
     
    final data = CategoryResponseModel.fromJson(response);
   categories = data.categories;
+  
       emit(categorySuccess());
     } catch (e) {
       emit(categoryError(errormessag:e.toString()));

@@ -1,6 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/core/cache/shared_preferences_cache.dart';
+import 'package:flutter_application_1/cubits/Cart_cubit/cart_cubit.dart';
 import 'package:flutter_application_1/cubits/RelatedcategoryCubit/cubit/related_category_cubit_cubit.dart';
 import 'package:flutter_application_1/cubits/add_imageprofile/cubit/add_image_cubit.dart';
 import 'package:flutter_application_1/cubits/brand_cubit/brand_cubit.dart';
@@ -81,6 +82,17 @@ void main() async {
             DioConsumer(Dio()), //
           )
         ),
+
+
+
+
+
+   BlocProvider(
+          create: (_) => CartCubit(
+            DioConsumer(Dio()), //
+          )
+        ),
+
 
 
       ],

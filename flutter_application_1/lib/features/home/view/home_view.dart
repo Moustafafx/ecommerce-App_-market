@@ -266,12 +266,7 @@ class _HomeViewState extends State<HomeView> {
                         ),
                       ),
                       SliverToBoxAdapter(child: brands()),
-                      SliverToBoxAdapter(
-                        child: Definition_of_part(
-                          namedescription: 'Buy Again',
-                          ontap: () {},
-                        ),
-                      ),
+                      
                     ],
                   );
                 },

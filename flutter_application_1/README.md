@@ -1,16 +1,74 @@
-# flutter_application_1
+# 🛒 E-Commerce Flutter App
 
-A new Flutter project.
+A full-featured E-Commerce mobile application built using **Flutter** with clean architecture and scalable folder structure.
 
-## Getting Started
+The app provides authentication, product browsing, favorites, cart system, checkout flow, order history, and more.
 
-This project is a starting point for a Flutter application.
+---
 
-A few resources to get you started if this is your first Flutter project:
+## 📱 Demo Video
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+🎥 Watch App Demo Here:
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+https://github.com/user-attachments/assets/7d615932-d513-480e-a597-ed514ae9d12e
+
+---
+
+## ✨ Features
+
+✅ Login & Sign Up  
+✅ Email Verification  
+✅ Forgot Password  
+✅ Home Screen  
+✅ Categories  
+✅ Brands  
+✅ Product Details  
+✅ Search Products  
+✅ Favorites ❤️  
+✅ Add To Cart 🛒  
+✅ Checkout 💳  
+✅ Order History 📦  
+✅ Upload Profile Image  
+✅ SharedPreferences Cache  
+✅ Clean & Responsive UI
+
+---
+
+## 🛠 Tech Stack
+
+- Flutter
+- Dart
+- Cubit / Bloc
+- REST API
+- Dio
+- SharedPreferences
+- Clean Architecture
+
+---
+
+## 📂 Project Structure
+
+```bash
+lib/
+│── core/
+│   ├── cache/
+│   ├── constants/
+│   ├── function/
+│   ├── network/
+│   └── utils/
+│
+│── cubits/
+│
+│── features/
+│   ├── auth/
+│   ├── brands/
+│   ├── cart/
+│   ├── category/
+│   ├── checkout/
+│   ├── home/
+│   ├── orderhistory/
+│   ├── product/
+│   ├── shared/
+│   └── onboarding_screens/
+│
+└── main.dart
